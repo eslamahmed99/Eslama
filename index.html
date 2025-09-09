@@ -210,7 +210,7 @@ document.addEventListener("contextmenu", e => {
 document.onkeydown = function(e) {
   if (e.keyCode == 123) { e.preventDefault(); return false; } // F12
   if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) {
-    e.preventDefault(); return false;
+    e.preventDefault(); return false; // Ctrl+Shift+I/J/C
   }
   if (e.ctrlKey && e.keyCode == 85) { e.preventDefault(); return false; } // Ctrl+U
 };
@@ -221,20 +221,7 @@ function forceLogout() {
   backToMain();
 }
 
-// مراقبة حجم نافذة المطور
-(function() {
-  const threshold = 160; 
-  setInterval(function() {
-    if (
-      window.outerWidth - window.innerWidth > threshold ||
-      window.outerHeight - window.innerHeight > threshold
-    ) {
-      forceLogout();
-    }
-  }, 1000);
-})();
-
-// مراقبة console.log
+// مراقبة console.log (محاولة فتح DevTools)
 (function() {
   const element = new Image();
   Object.defineProperty(element, 'id', {
